@@ -1,0 +1,168 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Ambatoplant API",
+      "version": "1.0.0",
+      "description": "API Documentation for Ambatoplant"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Development Server"
+      }
+    ],
+    "paths": {
+      "/plants": {
+        "get": {
+          "summary": "Get all plants",
+          "description": "Retrieve all documents from the 'plant' collection.",
+          "responses": {
+            "200": {
+              "description": "Successful response with plant data",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": true,
+                    "message": "Plants fetched successfully",
+                    "data": [
+                      {
+                        "id": "1",
+                        "name": "Aloe Vera",
+                        "benefit": "Soothes burns",
+                        "care_tips": "Water once a week",
+                        "imageUrl": "https://example.com/image.jpg"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "No plants found",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": false,
+                    "message": "No plants found",
+                    "data": []
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/plants/{id}": {
+        "get": {
+          "summary": "Get a plant by ID",
+          "description": "Retrieve a specific plant document by its ID.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "ID of the plant",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response with plant data",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": true,
+                    "message": "Plant with ID '1' fetched successfully",
+                    "data": {
+                      "id": "1",
+                      "name": "Aloe Vera",
+                      "benefit": "Soothes burns",
+                      "care_tips": "Water once a week",
+                      "imageUrl": "https://example.com/image.jpg"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Plant not found",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": false,
+                    "message": "Plant with ID '1' not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/upload-plant": {
+        "post": {
+          "summary": "Upload a new plant",
+          "description": "Upload a new plant with its details and image.",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the plant"
+                    },
+                    "benefit": {
+                      "type": "string",
+                      "description": "Benefits of the plant"
+                    },
+                    "care_tips": {
+                      "type": "string",
+                      "description": "Tips for taking care of the plant"
+                    },
+                    "file": {
+                      "type": "string",
+                      "format": "binary",
+                      "description": "Image file of the plant"
+                    }
+                  },
+                  "required": ["name", "benefit", "care_tips", "file"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Plant uploaded successfully",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "name": "Aloe Vera",
+                    "benefit": "Soothes burns",
+                    "care_tips": "Water once a week",
+                    "imageUrl": "https://example.com/image.jpg",
+                    "createdAt": "2024-12-02T00:00:00.000Z"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request due to missing file",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": false,
+                    "message": "No file uploaded"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
