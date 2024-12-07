@@ -2,7 +2,7 @@
 
 # **AmbatoPlant - Backend API and Machine Learning Integration**
 
-AmbatoPlant adalah aplikasi berbasis web yang memberikan informasi tentang tanaman, manfaatnya, tips perawatan, dan memungkinkan prediksi jenis tanaman melalui model machine learning.
+AmbatoPlant adalah aplikasi berbasis android yang memberikan informasi tentang tanaman, manfaatnya, tips perawatan, dan memungkinkan prediksi jenis tanaman melalui model machine learning.
 
 ---
 
