@@ -1,22 +1,28 @@
 {
   "name": "back-end-ambatoplant",
   "version": "1.0.0",
+  "description": "Back-end API for the Ambatoplant application",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon index.json",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Your Name",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "@google-cloud/storage": "^7.14.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "firebase-admin": "^13.0.1",
     "multer": "^1.4.5-lts.1",
-    "nodemon": "^3.1.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }

@@ -1,22 +1,28 @@
 const express = require('express');
-const plantRoutes = require('./src/routes/plantRoutes'); // Sesuaikan path jika diperlukan
+const app = express();
 const swaggerSetup = require('./swagger');
 
-const app = express();
-
-// Middleware untuk parsing JSON
+// Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// API routes akan memiliki prefix '/api'
-app.use('/api', plantRoutes);
-
-// Setup Swagger
-swaggerSetup(app);
-
-// Jalankan server
-const PORT = process.env.PORT || 9000;
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-    console.log(`Swagger docs available at http://localhost:${PORT}/api-docs`);
+// Basic route
+app.get('/', (req, res) => {
+    res.send('Aplikasi Ambatoplant berjalan!');
 });
 
+// API routes will have prefix '/api'
+const plantRoutes = require('./src/routes/plantRoutes'); // Adjust path if needed
+app.use('/api', plantRoutes);
+
+// Swagger setup
+swaggerSetup(app);
+
+// Port configuration
+const PORT = process.env.PORT || 9000;
+
+// Start server
+app.listen(PORT, () => {
+    console.log(`Server berjalan di port ${PORT}`);
+    console.log(`Swagger documentation: http://localhost:${PORT}/api-docs`);
+});

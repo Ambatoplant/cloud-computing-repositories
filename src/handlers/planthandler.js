@@ -1,8 +1,13 @@
-const db = require("../config/firebaseconfig");
+const { db } = require("../config/firebaseconfig");  // Adjust path as needed
 
 // Handler untuk mendapatkan semua dokumen dalam koleksi 'plant'
 const getAllPlants = async (req, res) => {
   try {
+    // Verify db is initialized
+    if (!db) {
+      throw new Error('Firestore DB not initialized');
+    }
+
     const plantsSnapshot = await db.collection("plant").get();
 
     if (plantsSnapshot.empty) {
@@ -24,7 +29,7 @@ const getAllPlants = async (req, res) => {
       data: plants,
     });
   } catch (error) {
-    console.error("Error fetching plants data:", error.message);
+    console.error("Error fetching plants data:", error);
     return res.status(500).json({
       success: false,
       message: "Error fetching plants data",

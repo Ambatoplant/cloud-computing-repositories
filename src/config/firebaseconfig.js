@@ -39,7 +39,6 @@ db.collection("test").doc("connectionTest").set({ connected: true })
   }
 });
 
-// Ekspor modul
 module.exports = {
   db,
   storage,
