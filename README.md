@@ -1,7 +1,7 @@
 # API Documentation
 
 ## Base URL
-`https://<your-deployed-url>/api`
+`https://backend-122135389835.asia-southeast2.run.app/api/plant/2`
 
 ---
 
