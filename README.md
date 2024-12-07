@@ -1,4 +1,5 @@
-```markdown
+---
+
 # **AmbatoPlant - Backend API and Machine Learning Integration**
 
 AmbatoPlant adalah aplikasi berbasis web yang memberikan informasi tentang tanaman, manfaatnya, tips perawatan, dan memungkinkan prediksi jenis tanaman melalui model machine learning.
@@ -13,6 +14,36 @@ AmbatoPlant adalah aplikasi berbasis web yang memberikan informasi tentang tanam
 - **Runtime**: [Node.js](https://nodejs.org/) (v18.x)
 
 ---
+
+## **Environment Setup**
+
+### **Requirements**
+- Node.js v18.x or higher
+- Google Cloud Project with appropriate permissions
+- Firebase Admin SDK service account
+- Google Cloud Storage bucket
+
+### **Environment Variables**
+Create a `.env` file in the root directory with the following configurations:
+
+```properties
+# Server
+PORT=9000
+NODE_ENV=production
+
+# Firebase
+FIREBASE_SERVICE_ACCOUNT_KEY=key.json
+FIREBASE_STORAGE_BUCKET=ambatoplant.appspot.com
+FIREBASE_PROJECT_ID=ambatoplant
+
+# Google Cloud
+GOOGLE_CLOUD_PROJECT=ambatoplant
+GOOGLE_APPLICATION_CREDENTIALS=key.json
+
+# API Config
+API_VERSION=v1
+CORS_ORIGIN=*
+```
 
 ## **Environment Setup**
 
