@@ -1,3 +1,29 @@
+### Tech Stack
+- **Express.js**: Backend API framework
+- **Firebase Admin SDK**: Database and authentication
+- **Google Cloud Storage**: Plant image storage
+- **Swagger**: API documentation
+- **Node.js**: Runtime (v18.x)
+
+### Environment Variables
+```properties
+# Server
+PORT=9000
+NODE_ENV=production
+
+# Firebase
+FIREBASE_SERVICE_ACCOUNT_KEY=key.json
+FIREBASE_STORAGE_BUCKET=ambatoplant.appspot.com
+FIREBASE_PROJECT_ID=ambatoplant
+
+# Google Cloud
+GOOGLE_CLOUD_PROJECT=ambatoplant
+GOOGLE_APPLICATION_CREDENTIALS=key.json
+
+# API Config
+API_VERSION=v1
+CORS_ORIGIN=*
+
 # API Documentation
 
 ## Base URL
