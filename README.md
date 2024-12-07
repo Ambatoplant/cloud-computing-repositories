@@ -1,11 +1,30 @@
-### Tech Stack
-- **Express.js**: Backend API framework
-- **Firebase Admin SDK**: Database and authentication
-- **Google Cloud Storage**: Plant image storage
-- **Swagger**: API documentation
-- **Node.js**: Runtime (v18.x)
+```markdown
+# **AmbatoPlant - Backend API and Machine Learning Integration**
 
-### Environment Variables
+AmbatoPlant adalah aplikasi berbasis web yang memberikan informasi tentang tanaman, manfaatnya, tips perawatan, dan memungkinkan prediksi jenis tanaman melalui model machine learning.
+
+---
+
+## **Tech Stack**
+- **Backend Framework**: [Express.js](https://expressjs.com/)
+- **Database & Authentication**: [Firebase Admin SDK](https://firebase.google.com/)
+- **Storage**: [Google Cloud Storage](https://cloud.google.com/storage)
+- **API Documentation**: [Swagger](https://swagger.io/)
+- **Runtime**: [Node.js](https://nodejs.org/) (v18.x)
+
+---
+
+## **Environment Setup**
+
+### **Requirements**
+- Node.js v18.x or higher
+- Google Cloud Project with appropriate permissions
+- Firebase Admin SDK service account
+- Google Cloud Storage bucket
+
+### **Environment Variables**
+Create a `.env` file in the root directory with the following configurations:
+
 ```properties
 # Server
 PORT=9000
@@ -23,296 +42,160 @@ GOOGLE_APPLICATION_CREDENTIALS=key.json
 # API Config
 API_VERSION=v1
 CORS_ORIGIN=*
+```
 
-# API Documentation
-
-## Base URL
-`https://backend-122135389835.asia-southeast2.run.app/api/plant/2`
+### **Setup Instructions**
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/your-repo/ambatoplant.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd ambatoplant
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Add the Firebase service account key (`key.json`) to the project root.
+5. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
 ---
 
-## Endpoints
+## **API Documentation**
 
-### 1. Get All Plants
-- **Method:** `GET`
-- **Endpoint:** `/plants`
-- **Description:** Fetch all plant data.
-  
-#### **Response:**
-```json
-{
-  "success": true,
-  "message": "Plants fetched successfully",
-  "data": [
-    {
-      "id": "1",
-      "name": "Jagung",
-      "benefits": [
-          "Jagung mengandung karbohidrat tinggi yang memberikan energi yang diperlukan tubuh untuk beraktivitas sehari-hari.",
-          "Jagung kaya akan serat, yang penting untuk pencernaan yang sehat, mencegah sembelit, menjaga saluran pencernaan, serta menurunkan risiko penyakit jantung.",
-          "Jagung mengandung beta-karoten, yang diubah menjadi vitamin A dalam tubuh, yang sangat penting untuk menjaga kesehatan mata dan mencegah gangguan penglihatan.",
-          "Kandungan vitamin B kompleks dan antioksidan seperti vitamin C dalam jagung dapat membantu menjaga kesehatan jantung, sementara serat larut dalam jagung dapat menurunkan kadar kolesterol jahat (LDL) dalam darah.",
-          "Jagung mengandung vitamin C yang dapat membantu meningkatkan sistem kekebalan tubuh dan melawan infeksi.",
-          "Jagung memiliki indeks glikemik yang rendah hingga sedang, yang dapat membantu mengatur kadar gula darah, menjadikannya pilihan yang baik bagi penderita diabetes.",
-          "Jagung mengandung senyawa antioksidan seperti lutein dan zeaxanthin, yang berfungsi melindungi tubuh dari kerusakan akibat radikal bebas.",
-          "Kandungan vitamin C dan antioksidan dalam jagung juga bermanfaat untuk kesehatan kulit, membantu menjaga elastisitas kulit, dan mencegah kerusakan akibat paparan sinar matahari.",
-          "Jagung mengandung tiamin (vitamin B1) yang penting untuk fungsi otak yang baik, dan kekurangan tiamin dapat menyebabkan masalah neurologis."
-      ],
-      "care_tips": [
-          "Pilih benih jagung berkualitas dari sumber yang terpercaya dan bebas dari penyakit. Pilih jenis jagung yang sesuai dengan tujuan (jagung manis, jagung pipilan, atau jagung hibrida). Benih jagung unggul akan memberikan hasil yang optimal.",
-          "Persiapkan media tanam dengan mencampurkan tanah lapisan atas dengan pupuk kandang atau kompos dengan perbandingan 1:1. Pastikan tanah memiliki drainase yang baik untuk mencegah genangan air yang dapat menyebabkan pembusukan akar.",
-          "Lakukan penanaman pada musim penghujan agar tanaman mendapatkan air yang cukup. Buat lubang tanam dengan kedalaman 3-5 cm dan jarak antar tanaman 25-30 cm, serta jarak antar baris 70-90 cm. Tanam benih dalam lubang tanam dan tutup kembali dengan tanah.",
-          "Lakukan penyiraman secara rutin, terutama pada musim kemarau. Jagung membutuhkan kelembapan yang cukup, namun hindari penyiraman berlebihan yang dapat menyebabkan akar tergenang air.",
-          "Pemupukan secara berkala menggunakan pupuk yang kaya akan nitrogen, fosfor, dan kalium. Pemupukan tambahan dapat dilakukan setelah tanaman berumur 2-3 minggu untuk mendukung pertumbunhan tanaman.",
-          "Lakukan penyiangan secara rutin untuk menghilangkan gulma yang dapat mengganggu pertumbuhan jagung. Gulma harus dibersihkan agar tanaman jagung tidak bersaing dengan mereka dalam hal air dan nutrisi.",
-          "Periksa tanaman secara berkala untuk mendeteksi adanya hama atau penyakit. Gunakan insektisida alami atau kimiawi jika diperlukan, dan pastikan tanaman memiliki ruang yang cukup untuk sirkulasi udara yang baik.",
-          "Pemanenan jagung dilakukan setelah 3-4 bulan, ketika biji jagung sudah keras dan berwarna kuning. Pemanenan yang tepat waktu akan memastikan hasil yang optimal.",
-          "Pengeringan dilakukan dengan menjemur jagung di bawah sinar matahari setelah dipanen. Pastikan jagung benar-benar kering untuk menghindari pembusukan saat penyimpanan.",
-          "Penyimpanan jagung yang telah dikeringkan harus dilakukan di tempat yang sejuk dan kering agar tetap terjaga kualitasnya."
-      ],
-      "image_url": "https://example.com/jagung.jpg",
-      "created_at": "2024-12-01T10:00:00Z"
-    }
-  ]
-}
+### **Base URL**
+Production:
+```
+https://backend-122135389835.asia-southeast2.run.app/api/v1/
 ```
 
-### 2. Get Plant by ID
-- **Method:** `GET`
-- **Endpoint:** `/plants/{id}`
-- **Description:** Fetch a specific plant by ID.
-- **Parameters:**
-  - `id` (string, required): The ID of the plant.
+Development:
+```
+http://localhost:9000/api/v1/
+```
 
-#### **Response:**
-```json
-{
-  "success": true,
-  "message": "Plant with ID '1' fetched successfully",
-  "data": {
-    "id": "1",
-    "name": "Jagung",
-    "benefits": [
-        "Jagung mengandung karbohidrat tinggi yang memberikan energi yang diperlukan tubuh untuk beraktivitas sehari-hari.",
-        "Jagung kaya akan serat, yang penting untuk pencernaan yang sehat, mencegah sembelit, menjaga saluran pencernaan, serta menurunkan risiko penyakit jantung.",
-        "Jagung mengandung beta-karoten, yang diubah menjadi vitamin A dalam tubuh, yang sangat penting untuk menjaga kesehatan mata dan mencegah gangguan penglihatan.",
-        "Kandungan vitamin B kompleks dan antioksidan seperti vitamin C dalam jagung dapat membantu menjaga kesehatan jantung, sementara serat larut dalam jagung dapat menurunkan kadar kolesterol jahat (LDL) dalam darah.",
-        "Jagung mengandung vitamin C yang dapat membantu meningkatkan sistem kekebalan tubuh dan melawan infeksi.",
-        "Jagung memiliki indeks glikemik yang rendah hingga sedang, yang dapat membantu mengatur kadar gula darah, menjadikannya pilihan yang baik bagi penderita diabetes.",
-        "Jagung mengandung senyawa antioksidan seperti lutein dan zeaxanthin, yang berfungsi melindungi tubuh dari kerusakan akibat radikal bebas.",
-        "Kandungan vitamin C dan antioksidan dalam jagung juga bermanfaat untuk kesehatan kulit, membantu menjaga elastisitas kulit, dan mencegah kerusakan akibat paparan sinar matahari.",
-        "Jagung mengandung tiamin (vitamin B1) yang penting untuk fungsi otak yang baik, dan kekurangan tiamin dapat menyebabkan masalah neurologis."
-    ],
-    "care_tips": [
-        "Pilih benih jagung berkualitas dari sumber yang terpercaya dan bebas dari penyakit. Pilih jenis jagung yang sesuai dengan tujuan (jagung manis, jagung pipilan, atau jagung hibrida). Benih jagung unggul akan memberikan hasil yang optimal.",
-        "Persiapkan media tanam dengan mencampurkan tanah lapisan atas dengan pupuk kandang atau kompos dengan perbandingan 1:1. Pastikan tanah memiliki drainase yang baik untuk mencegah genangan air yang dapat menyebabkan pembusukan akar.",
-        "Lakukan penanaman pada musim penghujan agar tanaman mendapatkan air yang cukup. Buat lubang tanam dengan kedalaman 3-5 cm dan jarak antar tanaman 25-30 cm, serta jarak antar baris 70-90 cm. Tanam benih dalam lubang tanam dan tutup kembali dengan tanah.",
-        "Lakukan penyiraman secara rutin, terutama pada musim kemarau. Jagung membutuhkan kelembapan yang cukup, namun hindari penyiraman berlebihan yang dapat menyebabkan akar tergenang air.",
-        "Pemupukan secara berkala menggunakan pupuk yang kaya akan nitrogen, fosfor, dan kalium. Pemupukan tambahan dapat dilakukan setelah tanaman berumur 2-3 minggu untuk mendukung pertumbunhan tanaman.",
-        "Lakukan penyiangan secara rutin untuk menghilangkan gulma yang dapat mengganggu pertumbuhan jagung. Gulma harus dibersihkan agar tanaman jagung tidak bersaing dengan mereka dalam hal air dan nutrisi.",
-        "Periksa tanaman secara berkala untuk mendeteksi adanya hama atau penyakit. Gunakan insektisida alami atau kimiawi jika diperlukan, dan pastikan tanaman memiliki ruang yang cukup untuk sirkulasi udara yang baik.",
-        "Pemanenan jagung dilakukan setelah 3-4 bulan, ketika biji jagung sudah keras dan berwarna kuning. Pemanenan yang tepat waktu akan memastikan hasil yang optimal.",
-        "Pengeringan dilakukan dengan menjemur jagung di bawah sinar matahari setelah dipanen. Pastikan jagung benar-benar kering untuk menghindari pembusukan saat penyimpanan.",
-        "Penyimpanan jagung yang telah dikeringkan harus dilakukan di tempat yang sejuk dan kering agar tetap terjaga kualitasnya."
-    ],
-    "image_url": "https://example.com/jagung.jpg",
-    "created_at": "2024-12-01T10:00:00Z"
+### **Endpoints Overview**
+#### **1. Get All Plants**
+- **Method**: `GET`
+- **Endpoint**: `/plants`
+- **Description**: Retrieve all plant data.
+- **Response**:
+  ```json
+  {
+    "success": true,
+    "message": "Plants fetched successfully",
+    "data": [ ... ]
   }
-}
-```
+  ```
 
-#### **Error Response:**
-If the plant ID does not exist:
-```json
-{
-  "success": false,
-  "message": "Plant with ID 'invalid-id' not found"
-}
-```
+#### **2. Get Plant by ID**
+- **Method**: `GET`
+- **Endpoint**: `/plants/{id}`
+- **Description**: Retrieve a specific plant by ID.
+- **Response**:
+  ```json
+  {
+    "success": true,
+    "message": "Plant with ID '{id}' fetched successfully",
+    "data": { ... }
+  }
+  ```
 
-### 3. Upload Plant
-- **Method:** `POST`
-- **Endpoint:** `/plants`
-- **Description:** Add a new plant to the database.
-- **Headers:**
-  - `Content-Type: multipart/form-data`
-- **Request Body:**
+#### **3. Upload Plant**
+- **Method**: `POST`
+- **Endpoint**: `/plants`
+- **Description**: Add a new plant to the database.
+- **Headers**: `Content-Type: multipart/form-data`
+- **Request Body**:
   - `name` (string, required): Name of the plant.
-  - `benefit` (string, required): Benefit of the plant.
-  - `care_tips` (string, optional): Tips for taking care of the plant.
-  - `file` (file, required): Image of the plant.
+  - `benefits` (string, required): Benefits of the plant.
+  - `care_tips` (string, optional): Care tips for the plant.
+  - `file` (file, required): Image file of the plant.
 
-#### **Response:**
-```json
-{
-  "name": "Aloe Vera",
-  "benefit": "Healing properties",
-  "care_tips": "Water weekly",
-  "imageUrl": "https://storage.googleapis.com/<bucket-name>/aloe-vera.jpg",
-  "createdAt": "2024-12-01T10:00:00Z"
-}
-```
+- **Response**:
+  ```json
+  {
+    "name": "Aloe Vera",
+    "benefits": "Healing properties",
+    "care_tips": "Water weekly",
+    "imageUrl": "https://storage.googleapis.com/<bucket-name>/aloe-vera.jpg",
+    "createdAt": "2024-12-01T10:00:00Z"
+  }
+  ```
 
-#### **Error Response:**
-If file is missing:
-```json
-{
-  "success": false,
-  "message": "No file uploaded"
-}
-```
-
-### Response Codes
-- `200 OK`: Request processed successfully.
-- `201 Created`: Resource created successfully.
-- `400 Bad Request`: Invalid or missing parameters.
-- `404 Not Found`: Resource not found.
-- `500 Internal Server Error`: Unexpected server error.
 ---
 
-# **AmbatoPlant ML API Documentation**
+## **Machine Learning API**
 
-## **Base URL**
+### **Base URL**
+Production:
 ```
 https://ml-api-122135389835.asia-southeast2.run.app/
 ```
-**Host:** Bisa berupa `localhost` saat pengembangan atau IP publik/server untuk deployment.
 
----
+Development:
+```
+http://localhost:8080/
+```
 
-## **Endpoints**
-
-### **1. Home Endpoint**
-- **URL:** `/`
-- **Method:** `GET`
-- **Description:** Endpoint untuk memverifikasi bahwa server berjalan.
-- **Response:**
-  - **200 OK**
-    ```json
-    "Welcome to the ML API!"
-    ```
-
----
-
-### **2. Predict Endpoint**
-- **URL:** `/predict`
-- **Method:** `POST`
-- **Description:** Endpoint untuk melakukan prediksi pada gambar tanaman berdasarkan model TFLite.
-
-#### **Request**
-- **Header:** 
-  - `Content-Type: multipart/form-data`
-- **Body:**
-  - **Key:** `file`
-    - **Type:** File
-    - **Description:** Gambar tanaman dalam format `.jpg`, `.png`, atau lainnya yang kompatibel.
-
-#### **Response**
-- **200 OK**
-  - Jika prediksi berhasil:
-    ```json
-    {
-        "predicted_class": 3,
-        "predicted_species": "jagung",
-        "confidence": 0.987654321
-    }
-    ```
-  - **Predicted Fields:**
-    - `predicted_class`: Indeks numerik dari kelas tanaman.
-    - `predicted_species`: Nama spesies tanaman (sesuai daftar class model).
-    - `confidence`: Keyakinan model terhadap prediksi dalam skala 0 hingga 1.
-
-- **400 Bad Request**
-  - Jika file tidak disediakan:
-    ```json
-    {
-        "error": "No file part in the request"
-    }
-    ```
-  - Jika file kosong:
-    ```json
-    {
-        "error": "No file selected for uploading"
-    }
-    ```
-
-- **500 Internal Server Error**
-  - Jika terjadi kesalahan selama proses prediksi:
-    ```json
-    {
-        "error": "Error message explaining the issue"
-    }
-    ```
-
----
-
-## **Usage Examples**
-
-### **Home Endpoint**
-- **Request:**
-  ```bash
-  curl -X GET http://localhost:8080/
-  ```
-- **Response:**
+### **Endpoints Overview**
+#### **1. Home Endpoint**
+- **URL**: `/`
+- **Method**: `GET`
+- **Description**: Verify that the ML API is running.
+- **Response**:
   ```json
   "Welcome to the ML API!"
   ```
 
-### **Predict Endpoint**
-- **Request:**
-  ```bash
-  curl -X POST -F "file=@path_to_image.jpg" http://localhost:8080/predict
-  ```
-- **Response:**
+#### **2. Predict Endpoint**
+- **URL**: `/predict`
+- **Method**: `POST`
+- **Description**: Predict the type of plant based on an uploaded image.
+- **Request Body**:
+  - `file` (multipart/form-data): Image file of the plant.
+
+- **Response**:
   ```json
   {
-      "predicted_class": 0,
-      "predicted_species": "bunga_matahari",
-      "confidence": 0.9567
+    "predicted_class": 3,
+    "predicted_species": "jagung",
+    "confidence": 0.987654321
   }
   ```
 
 ---
 
 ## **Model Details**
-- **Model Name:** AmbatoPlant InceptionV3
-- **File Path:** `saved model/model_AmbatoPlant_InceptionV3_V3.tflite`
-- **Supported Classes:**
-  ```
-  0: bunga_matahari
-  1: delima
-  2: gandum
-  3: jagung
-  4: jambu_batu
-  5: kakao
-  6: kamboja
-  7: kelor
-  8: lidah_buaya
-  9: melati
-  10: nanas
-  11: okra
-  12: singkong
-  13: sorgum
-  14: tomat
-  ```
+- **Model**: AmbatoPlant InceptionV3
+- **File**: `saved_model/model_AmbatoPlant_InceptionV3.tflite`
+- **Supported Classes**:
+  - Class 0: Sunflower
+  - Class 1: Aloe Vera
+  - Class 2: Cactus
+  - Class 3: Corn
+  - ...
 
 ---
 
-## **Error Handling**
-- Pastikan file gambar memiliki resolusi dan format yang sesuai dengan model (224x224 piksel).
-- Jika terjadi error, pesan spesifik akan dikembalikan untuk membantu debugging.
+## **Project Roadmap**
+1. Implement core backend APIs with Express.js.
+2. Integrate Firebase Admin SDK for database and authentication.
+3. Add Google Cloud Storage for image management.
+4. Document all endpoints with Swagger.
+5. Train and integrate ML model for plant classification.
 
 ---
 
+## **Contributing**
+Contributions are welcome! Please fork the repository and create a pull request for new features or bug fixes.
 
+---
 
-## How to Use the API
-- **Base URL:** Replace `<your-deployed-url>` with your API's deployed URL.
-- Use tools like Postman or curl to interact with the API.
-- Ensure required headers and body fields are included for POST requests.
-
-## Notes
-- This API does not support DELETE or PUT methods.
-- Ensure proper authentication if implemented in the future.
-- Images are stored in Google Cloud Storage, and their URLs are publicly accessible. API Documentation
-
+## **License**
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+```
