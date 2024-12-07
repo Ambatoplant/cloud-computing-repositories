@@ -142,6 +142,143 @@ If file is missing:
 - `400 Bad Request`: Invalid or missing parameters.
 - `404 Not Found`: Resource not found.
 - `500 Internal Server Error`: Unexpected server error.
+---
+
+# **AmbatoPlant ML API Documentation**
+
+## **Base URL**
+```
+https://ml-api-122135389835.asia-southeast2.run.app/
+```
+**Host:** Bisa berupa `localhost` saat pengembangan atau IP publik/server untuk deployment.
+
+---
+
+## **Endpoints**
+
+### **1. Home Endpoint**
+- **URL:** `/`
+- **Method:** `GET`
+- **Description:** Endpoint untuk memverifikasi bahwa server berjalan.
+- **Response:**
+  - **200 OK**
+    ```json
+    "Welcome to the ML API!"
+    ```
+
+---
+
+### **2. Predict Endpoint**
+- **URL:** `/predict`
+- **Method:** `POST`
+- **Description:** Endpoint untuk melakukan prediksi pada gambar tanaman berdasarkan model TFLite.
+
+#### **Request**
+- **Header:** 
+  - `Content-Type: multipart/form-data`
+- **Body:**
+  - **Key:** `file`
+    - **Type:** File
+    - **Description:** Gambar tanaman dalam format `.jpg`, `.png`, atau lainnya yang kompatibel.
+
+#### **Response**
+- **200 OK**
+  - Jika prediksi berhasil:
+    ```json
+    {
+        "predicted_class": 3,
+        "predicted_species": "jagung",
+        "confidence": 0.987654321
+    }
+    ```
+  - **Predicted Fields:**
+    - `predicted_class`: Indeks numerik dari kelas tanaman.
+    - `predicted_species`: Nama spesies tanaman (sesuai daftar class model).
+    - `confidence`: Keyakinan model terhadap prediksi dalam skala 0 hingga 1.
+
+- **400 Bad Request**
+  - Jika file tidak disediakan:
+    ```json
+    {
+        "error": "No file part in the request"
+    }
+    ```
+  - Jika file kosong:
+    ```json
+    {
+        "error": "No file selected for uploading"
+    }
+    ```
+
+- **500 Internal Server Error**
+  - Jika terjadi kesalahan selama proses prediksi:
+    ```json
+    {
+        "error": "Error message explaining the issue"
+    }
+    ```
+
+---
+
+## **Usage Examples**
+
+### **Home Endpoint**
+- **Request:**
+  ```bash
+  curl -X GET http://localhost:8080/
+  ```
+- **Response:**
+  ```json
+  "Welcome to the ML API!"
+  ```
+
+### **Predict Endpoint**
+- **Request:**
+  ```bash
+  curl -X POST -F "file=@path_to_image.jpg" http://localhost:8080/predict
+  ```
+- **Response:**
+  ```json
+  {
+      "predicted_class": 0,
+      "predicted_species": "bunga_matahari",
+      "confidence": 0.9567
+  }
+  ```
+
+---
+
+## **Model Details**
+- **Model Name:** AmbatoPlant InceptionV3
+- **File Path:** `saved model/model_AmbatoPlant_InceptionV3_V3.tflite`
+- **Supported Classes:**
+  ```
+  0: bunga_matahari
+  1: delima
+  2: gandum
+  3: jagung
+  4: jambu_batu
+  5: kakao
+  6: kamboja
+  7: kelor
+  8: lidah_buaya
+  9: melati
+  10: nanas
+  11: okra
+  12: singkong
+  13: sorgum
+  14: tomat
+  ```
+
+---
+
+## **Error Handling**
+- Pastikan file gambar memiliki resolusi dan format yang sesuai dengan model (224x224 piksel).
+- Jika terjadi error, pesan spesifik akan dikembalikan untuk membantu debugging.
+
+---
+
+
 
 ## How to Use the API
 - **Base URL:** Replace `<your-deployed-url>` with your API's deployed URL.
