@@ -99,7 +99,7 @@ CORS_ORIGIN=*
 ## **API Documentation**
 
 ### **Base URL**
-Production:
+
 
 
 Development:
