@@ -100,9 +100,7 @@ CORS_ORIGIN=*
 
 ### **Base URL**
 Production:
-```
-https://backend-122135389835.asia-southeast2.run.app/api/v1/
-```
+
 
 Development:
 ```
