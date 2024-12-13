@@ -171,52 +171,14 @@ Development:
 http://localhost:8080/
 ```
 
-### **Endpoints Overview**
-#### **1. Home Endpoint**
-- **URL**: `/`
-- **Method**: `GET`
-- **Description**: Verify that the ML API is running.
-- **Response**:
-  ```json
-  "Welcome to the ML API!"
-  ```
 
-#### **2. Predict Endpoint**
-- **URL**: `/predict`
-- **Method**: `POST`
-- **Description**: Predict the type of plant based on an uploaded image.
-- **Request Body**:
-  - `file` (multipart/form-data): Image file of the plant.
-
-- **Response**:
-  ```json
-  {
-    "predicted_class": 3,
-    "predicted_species": "jagung",
-    "confidence": 0.987654321
-  }
-  ```
-
----
-
-## **Model Details**
-- **Model**: AmbatoPlant InceptionV3
-- **File**: `saved_model/model_AmbatoPlant_InceptionV3.tflite`
-- **Supported Classes**:
-  - Class 0: Sunflower
-  - Class 1: Aloe Vera
-  - Class 2: Cactus
-  - Class 3: Corn
-  - ...
-
----
 
 ## **Project Roadmap**
 1. Implement core backend APIs with Express.js.
 2. Integrate Firebase Admin SDK for database and authentication.
 3. Add Google Cloud Storage for image management.
 4. Document all endpoints with Swagger.
-5. Train and integrate ML model for plant classification.
+
 
 ---
 
