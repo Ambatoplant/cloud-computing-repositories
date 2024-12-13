@@ -156,20 +156,7 @@ http://localhost:9000/api/v1/
   }
   ```
 
----
 
-## **Machine Learning API**
-
-### **Base URL**
-Production:
-```
-https://ml-api-122135389835.asia-southeast2.run.app/
-```
-
-Development:
-```
-http://localhost:8080/
-```
 
 
 
